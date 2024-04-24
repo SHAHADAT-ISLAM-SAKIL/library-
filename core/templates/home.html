@@ -1,0 +1,55 @@
+{% extends 'base.html'%} {%load static %} {% block content %}
+<div
+  class="d-flex row container p-5 flex-wrap justify-content-center align-content-center gap-5"
+>
+  <div class="col-lg-6 col-sm-12 shadow rounded">
+    <div class="my-5 container">
+      <h2>Welcome To Book Shop</h2>
+      <p>
+        your local haven for book lovers! Discover a world of stories ranging from timeless classics to modern masterpieces. Explore our cozy nooks, attend engaging events, and lose yourself in the magic of books. Whether you're a casual reader or a literary enthusiast, find your next great read with us!
+      </p>
+    </div>
+  </div>
+  <div class="col-lg-5 col-sm-12">
+    <img
+      style="width: 35rem"
+      class="shadow rounded"
+      src="{% static 'frist.jpg'%}"
+      alt=""
+    />
+  </div>
+</div>
+<div class="d-flex container gap-3 flex-wrap">
+  {% for i in brand%}
+  <a
+    href="{% url 'brand_slug' i.slug%}"
+    id="home-hover"
+    class="mx-auto mb-5 text-dark fs-6 fw-bold text-decoration-none"
+    >{{i}}</a
+  >
+  {% endfor %}
+</div>
+<br />
+
+<div
+  class="d-flex justify-content-center align-content-center flex-wrap gap-5 mt-5 mb-5 container"
+>
+  {% for i in post %}
+  <a class="text-decoration-none text-dark" href="{% url 'detail' i.id%}">
+    <div class="card shadow" style="width: 20rem">
+      <img
+        src="{{ i.image.url }}"
+        class="card-img-top w-75 m-auto p-lg-2"
+        alt="{{ i.image.url }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{i.title}}</h5>
+        <p class="fw-bold">book category: {{i.brand}}</p>
+        <p class="card-text">{{i.description|truncatewords:10}}</p>
+        <p class="card-text fw-bold">Borrowed price :{{i.borrowed_price}}</p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

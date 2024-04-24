@@ -1,0 +1,20 @@
+<!-- details.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-3 container mt-5 mb-5">
+    <img src="{{object.image.url}}" class="card-img-top m-auto w-25" alt="{{object.image.url}}">
+    <div class="card-body">
+        <h5 class="card-title">{{object.title}}</h5>
+        <p class="card-text">{{object.description}}</p>
+        <p class="card-text fw-bold"> borrowe price : {{object.borrowed_price}}</p>
+        {% if request.user.is_authenticated%}
+        <form method="post" action="{% url 'borrow' id=object.id %}">
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Borrow now</button>
+        </form>       
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

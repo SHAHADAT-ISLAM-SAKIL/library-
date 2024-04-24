@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="mb-5">
+    <h1 class="fw-bold fs-1 text-center pb-5 pt-2">Borrowed Report</h1>
+    <hr />
+    <table class="table-auto mx-auto w-75 shadow rounded px-5 mt-5">
+        <thead class="bg-success text-white text-left">
+            <tr class="rounded p-5 text-light fw-bold">
+                <th class="px-4 py-2">Id</th>
+                <th class="px-4 py-2">Transaction type</th>
+                <th class="px-4 py-2">Amount</th>
+                <th class="px-4 py-2">Balance After Transaction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in transcation %}
+            <tr>
+                <td class="px-4 py-2">{{ i.id }}</td>
+                <td class="px-4 py-2">{{ i.get_transaction_type_display }}</td>
+                <td class="px-4 py-2">${{ i.amount }}</td>
+                <td class="px-4 py-2">${{ i.balance_after_transaction }}</td>
+            </tr>
+
+            {% endfor %}
+
+            <tr class="bg-primary text-white">
+                <th class="px-4 py-2 text-right" colspan="3">Current Balance</th>
+                <th class="px-4 py-2 text-left">$ {{ account.balance }}</th>
+            </tr>
+
+            
+        </tbody>
+    </table>
+
+
+
+
+
+
+    
+</div>
+{% endblock %}

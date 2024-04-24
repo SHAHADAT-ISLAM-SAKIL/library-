@@ -1,0 +1,30 @@
+{% extends "base.html"%} {% load static%} {% block content %}
+<div class="mt-5 d-flex justify-content-center flex-wrap align-items-center gap-5 container">
+    {% for i in data%}
+    <div class="card  shadow" style="width: 20rem">
+        <div class="card-body">
+            <h5 class="card-title">{{i.book.title}}</h5>
+            <p class="card-text fw-bold">borrow parson name: {{i.user}}</p>
+            <p class="card-text fw-bold">{{i.book.brand.brand_name}}</p>
+            <p class="card-text fw-bold">{{i.book.borrowed_price}}</p>
+            <p class="card-text fw-bold">{{i.borrowed_date}}</p>
+           
+            <form method="post" action="{% url 'return' i.id %}">
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">return now </button>
+            </form>  
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="d-flex flex-column">
+        {% for i in reviews %}
+         <div class="shadow p-3">
+            <p>{{i.comment}}</p>
+         </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock%}
